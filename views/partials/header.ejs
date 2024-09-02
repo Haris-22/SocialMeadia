@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <title>Post</title>
+</head>
+<body>
+    <nav class="flex items-center bg-black text-white py-2 ">
+        <div class="ml-3 relative mr-auto">
+            <div class="flex h-full items-center">
+                <a href="/users/profile">
+                    <div class=" h-10 w-10 bg-white rounded-full overflow-hidden mr-3 object-fit flex justify-center items-center">
+                        <img src="data:image/jpeg;base64,<%= user.dp.toString('base64') %>">
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="mr-6">
+            <a href="/"><i class="ph ph-house text-4xl text-zinc-500"></i></a>
+        </div>
+        <div class="mr-6">
+            <a href="/posts/post"><i class="ph ph-plus-circle text-4xl text-zinc-500"></i></a>
+        </div>
+        <div class="mr-3">
+            <a href="/users/logout"><button class="px-3 py-2 text-sm rounded-md bg-red-500">Logout</button></a>
+        </div>
+    </nav>
+</body>
+</html>

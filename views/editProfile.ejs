@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Post</title>
+</head>
+<body>
+    <div class="bg-black min-h-screen text-white">
+        <div class="h-1/5">
+            <%- include('./partials/header')%>
+        </div>
+        <div class="min-h-full rounded-t-lg bg-zinc-900 mx-1 text-white p-10">
+            <div class="w-2/5 ">
+                <h3 class="text-3xl mb-10 font-semibold">Upload Your Profile Pictur</h3>
+                <form action="/users/upload" method="post" enctype="multipart/form-data">
+                    <label class="text-zinc-400">Choose Profile Picture</label><br>
+                    <input type="file" name="image"
+                    class="mb-5 px-2 py-2 w-72 file:h-8 file:bg-zinc-800 file:border-none file:text-white file:rounded-md rounded-lg bg-zinc-700"><br>
+                    <input type="text" name="name" placeholder="Name" class="px-3 mb-5 bg-transparent border-b-2 border-zinc-500 w-72 h-10 resize-none"><br>
+                    <input type="number" name="age" placeholder="Age" class="px-3 mb-5 bg-transparent border-b-2 border-zinc-500 w-72 h-10 resize-none"><br>
+                    <input type="string" name="email" placeholder="Email" class="px-3 mb-5 bg-transparent border-b-2 border-zinc-500 w-72 h-10 resize-none"><br>
+                    <input type="submit" name="upload" class="bg-orange-500 px-3 py-1 rounded-md">
+                </form>
+                <h3 class='mt-10'>Want to change <a href="/" class="text-red-600 underline ">Cancle</a></h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

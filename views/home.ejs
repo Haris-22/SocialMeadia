@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Post</title>
+</head>
+<body>
+    <div class="bg-black min-h-screen text-white">
+        <div class="h-1/5"><%- include('./partials/header')%></div>
+        <div class="w-2/5 px-4 bg-blue-500">
+            
+        </div>
+        <h3 class="text-zinc-500 mb-5 mt-10">
+            <%=// user.content %>
+            <!-- <img src="data:image/jpeg;base64,<%=// user.image.toString('base64') %>"> -->
+        </h3>
+        <div class="px-10 flex flex-wrap gap-2">
+            <!-- <div> -->
+                <% feeds.forEach(feed => {%>
+                    <div class="post max-w-72 h-fit px-2 py-3 w-contain bg-zinc-800 rounded-lg mb-5 border-zinc-500">
+                        <h2 class="text-blue-500 text-2xl mb-2">@<%= feed.name %></h2>
+                        <div class=" flex flex-wrap mb-2">
+                            <p class="text-xl"><%= feed.content %></p>
+                        </div>
+                        <img src="data:image/jpeg;base64,<%=feed.image.toString('base64') %>"
+                        class="rounded-md overflow-hidden mb-2 ">
+                        <div class="text-sm text-zinc-400"><%=feed.like.length %> like</div>
+                        <a class="text-blue-500" href="/posts/like/<%= feed._id%>"><%= feed.like.indexOf(user._id) === -1 ? "Like" : "Unlike" %></a>
+                    </div>
+                <%}); %>
+            <!-- </div> -->
+        </div>
+    </div>
+</body>
+</html>

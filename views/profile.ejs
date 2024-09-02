@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Post</title>
+</head>
+<body>
+    <div class="bg-black min-h-screen">
+        <div class="h-1/5"><%- include('./partials/header')%></div>
+        <div class="w-full h-auto px-10 py-5">
+            <div class="flex items-center">
+                <div class="w-20 h-fit bg-red-500 flex justify-between items-center rounded-lg overflow-hidden mr-6">
+                    <img src="data:image/jpeg;base64,<%=user.dp.toString('base64') %>">
+                </div>
+                <div class="">
+                    <h3 class="text-white font-semibold text-2xl"><%= user.name %></h3>
+                    <h3 class="text-white font-semibold text-2xl"><%= user.age %></h3>
+                    <h3 class="text-white font-semibold text-2xl"><%= user.email %></h3>
+                </div>
+            </div>
+            <a href="/users/upload">
+                <button class="bg-orange-500 text-white text-xs px-2 py-1 rounded-md mt-5">Edit profile</button>
+            </a>
+        </div>
+<!-- User Posts -->
+        <div class="min-h-4/5 rounded-t-lg bg-zinc-900 mx-1 text-white p-10">
+            <h3 class="text-zinc-500 mb-5">Your Posts</h3>
+            <div class="flex flex-wrap gap-2">
+                <% user.posts.reverse().forEach(post => {%>
+                    <div class="post max-w-72 h-fit px-2 py-3 w-contain bg-zinc-800 rounded-lg  border-zinc-500">
+                        <h2 class="text-blue-500 text-2xl mb-2">@<%= user.name %></h2>
+                        <div class=" flex flex-wrap mb-2">
+                            <p class="text-xl"><%= post.content %></p>
+                        </div>
+                        <img src="data:image/jpeg;base64,<%=post.image.toString('base64') %>"
+                        class="rounded-md overflow-hidden mb-2 ">
+                        <div class="text-sm text-zinc-400"><%=post.like.length %> like</div>
+                        <a class="text-blue-500" href="/posts/like/<%= post._id%>"><%= post.like.indexOf(user._id) === -1 ? "Like" : "Unlike" %></a>
+                        <a class="text-zinc-500 ml-4" href="/posts/edit/<%= post._id%>">Edit</a>
+                        <a class="text-red-500 ml-4" href="/posts/delete/<%= post._id%>">Delete</a>
+                    </div>
+                <%}); %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
