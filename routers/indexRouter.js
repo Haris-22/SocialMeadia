@@ -6,10 +6,10 @@ const {userLogin, signUpUser} = require('../controllers/authcontrollers');
 const {isLogedIn} = require("../middleware/IsLogedIn")
 
 router.get("/", isLogedIn, async (req, res)=>{
-    let user = await userModel.findOne({email: req.user.email}).populate('posts');
-    let feeds = await postModel.find().populate('user')
-    console.log("User:",feeds.name)
-    res.render("home", {user, feeds})
+  let user = await userModel.findOne({email: req.user.email}).populate('posts');
+  let feeds = await postModel.find().populate('user')
+  let page = "home"
+  res.render("home", {user, feeds, page})
 })
 
 router.get("/login", async (req, res)=>{

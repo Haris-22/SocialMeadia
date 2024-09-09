@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <title>Post</title>
+    <link rel="shortcut icon" href="../images/uploads/ixon-white.png" type="image/x-icon">
+    <title>Post SignIn</title>
 </head>
 <body>
     <div class="w-full min-h-screen bg-zinc-900 text-white p-10 flex justify-center items-center">
@@ -20,9 +21,23 @@
                 <% } %>
             <div class="flex justify-center items-center w-full mb-10">
                 <form action="/register" method="post">
-                    <input type="text" name="name" placeholder="Name" class="w-72 h-10 mb-5 bg-zinc-700 px-3 py-1 rounded-md outline-none"><br>
+
+                    <div class="relative h-10 w-72">
+                        <input type="text" name="name" placeholder="Name"
+                        class="h-full w-full bg-zinc-700 px-3 py-1 rounded-md mb-7 outline-none">
+                        <span class="absolute top-1/2 right-2 transform -translate-x-1/2 -translate-y-1/2 text-zinc-400">
+                        <i class="ph-fill ph-user"></i></i></span>
+                    </div><br>
+
                     <input type="number" name="age" placeholder="Age" class="w-72 h-10 mb-5 bg-zinc-700 px-3 py-1 rounded-md outline-none"><br>
-                    <input type="email" name="email" placeholder="Email" class="w-72 h-10 mb-5 bg-zinc-700 px-3 py-1 rounded-md outline-none"><br>
+
+                    <div class="relative h-10 w-72">
+                        <input type="email" name="email" placeholder="Email"    
+                        class="h-full w-full bg-zinc-700 px-3 py-1 rounded-md mb-7 outline-none">
+                        <span class="absolute top-1/2 right-2 transform -translate-x-1/2 -translate-y-1/2 text-zinc-400">
+                        <i class="ph-fill ph-envelope-simple"></i></span>
+                    </div><br>
+
                     <div class="w-72 h-10 mb-7 relative">
                         <input type="password" name="password" placeholder="Password" class="password w-full h-full bg-zinc-700 px-3 py-1 rounded-md outline-none">
                         <span class="eye-icon absolute top-1/2 right-2 transform -translate-x-1/2 -translate-y-1/2 text-zinc-400" 

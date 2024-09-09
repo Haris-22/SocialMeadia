@@ -19,11 +19,12 @@ router.get("/logout", (req, res)=>{
 // Profile Picture 
 router.get('/upload', isLogedIn, async (req, res)=>{
     let user = await userModel.findOne({email: req.user.email})
-    res.render('editProfile', {user})
+    let page = 'profile'
+    res.render('editProfile', {user, page})
 })
 
 router.post('/upload',isLogedIn, upload.single('image'), async (req, res)=>{
-    let {name, age, email} = req.body
+    let {name, age} = req.body
     let user = await userModel.findOne({email: req.user.email});
     if(req.file !== undefined){
         user.dp = req.file.buffer;
@@ -35,16 +36,14 @@ router.post('/upload',isLogedIn, upload.single('image'), async (req, res)=>{
     if(age !== ''){
         user.age = age;
     }
-    if(email !== ''){
-        user.email = email
-    }
     user.save();
     res.redirect('/')
 })
 
 router.get("/profile", isLogedIn, async (req, res)=>{
     let user = await userModel.findOne({email: req.user.email}).populate('posts')
-    res.render('profile', {user})
+    let page = 'profile'
+    res.render('profile', {user, page})
 })
 
 

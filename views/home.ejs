@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Post</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="shortcut icon" href="./images/uploads/ixon.png.png" type="image/x-icon">
+    <title>Home</title>
 </head>
 <body>
     <div class="bg-black min-h-screen text-white">
@@ -18,18 +20,38 @@
         </h3>
         <div class="px-10 flex flex-wrap gap-2">
             <!-- <div> -->
-                <% feeds.forEach(feed => {%>
-                    <div class="post max-w-72 h-fit px-2 py-3 w-contain bg-zinc-800 rounded-lg mb-5 border-zinc-500">
-                        <h2 class="text-blue-500 text-2xl mb-2">@<%= feed.name %></h2>
-                        <div class=" flex flex-wrap mb-2">
-                            <p class="text-xl"><%= feed.content %></p>
+                <% if(feeds.length <= 0){ %>
+                    <h1 class="text-zinc-600 font-semibold tracking-tight">No feed yet!</h1>
+                <% } %>
+                <%// }else{ %>
+                    <% feeds.reverse().forEach(feed => {%>
+                        <div class="post max-w-72 h-fit py-3 w-contain bg-zinc-900 rounded-lg">
+                            <div class="flex gap-1 px-2">
+                                <img src="data:image/jpeg;base64,<%=feed.user.dp.toString('base64') %>"
+                                class="h-8 w-8 rounded-full border border-violet-400 object-cover">
+                                <h2 class="text-violet-400 text-2xl mb-2">
+                                <%= feed.user.name %></h2>
+                            </div>
+                            <div class="flex flex-wrap mb-2 px-2">
+                                <p class="text-md text-zinc-400"><%= feed.content %></p>
+                            </div>
+                            <%if(feed.image !== null){%>
+                                <img src="data:image/jpeg;base64,<%=feed.image.toString('base64') %>"
+                                class="overflow-hidden mb-2 ">
+                            <% } %>
+                            <a class="text-violet-500 px-2" href="/posts/like/<%= feed._id%>/home">
+                                <% if(feed.like.indexOf(user._id) === -1 ) {%>
+                                    <i class="ph ph-heart"></i>
+                                <% }else{ %>
+                                    <i class="ph-fill ph-heart"></i>
+                                <% } %>
+                            </a>
+                            <% if(feed.like.length > 0) {%>
+                                <div class="text-sm text-zinc-400 px-2"><%=feed.like.length %> like</div>
+                            <% } %>
                         </div>
-                        <img src="data:image/jpeg;base64,<%=feed.image.toString('base64') %>"
-                        class="rounded-md overflow-hidden mb-2 ">
-                        <div class="text-sm text-zinc-400"><%=feed.like.length %> like</div>
-                        <a class="text-blue-500" href="/posts/like/<%= feed._id%>"><%= feed.like.indexOf(user._id) === -1 ? "Like" : "Unlike" %></a>
-                    </div>
-                <%}); %>
+                    <%}); %>
+                <%// } %>
             <!-- </div> -->
         </div>
     </div>
